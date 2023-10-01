@@ -1,33 +1,27 @@
 # Ryzen Hackintosh EFI
 
-![Ryzen Hackintosh](docs/hackintosh_macos_ventura.png)
-![Ryzen Hackintosh - About this Mac](docs/about_this_mac.png)
+![Ryzen Hackintosh](docs/hackintosh_macos_sonoma.png)
 
 ## What is this
 
-This repository contains the EFI directory for Ryzen 3900X and Gigabyte X570 Aorus Elite combo, with somewhat diverse additional components.
+First of all, this is fork of [this wonderfull work for Ventura](https://github.com/awesometic/hackintosh-gigabyte-x570-aorus-elite/) but adаpted to nearly released **macOS Sonoma 14.0**
+I have a bit different hardware setup, so all parameteres are in table. All drivers updated to latest versions so as OpenCore to 0.9.5 version.
+
+This repository contains the EFI directory for Ryzen 5600X and Gigabyte X570s Aorus Elite AX combo, with no additional components.
 
 ## Specification of my computer
 
 | Component    | Product Name                                     | Note                                           |
 |--------------|--------------------------------------------------|------------------------------------------------|
-| CPU          | AMD Ryzen 9 3900X                                | PBO enabled                                    |
-| Mainboard    | Gigabyte X570 Aorus Elite                        | F37c BIOS                                      |
-| Memory       | Samsung DDR4 2666MHz 16GB 2EA                    | Overclocked at 3200MHz with 16-18-18-36 timing |
-| Graphics     | XFX AMD Radeon RX 5700 XT 8GB GDDR6 RAW II Ultra | Changed its thermal pad and thermal paste      |
-| NVMe 1       | Samsung 980 PRO 1TB                              | Windows 11 installed                           |
-| NVMe 2       | RevuAhn NX2300 1TB                               | KDE neon installed                             |
-| NVMe 3       | WD Black SN750 500GB (via PCIe to NVMe adapter)  | macOS 13 installed                             |
-| SSD 1        | Sandisk Ultra 3D 1TB                             | Miscellaneous storage                          |
-| PCI Ethernet | EFM ipTIME PX2500 2.5 GbE LAN Card (RTL8125B)    | Using this as the main Ethernet device         |
-| BT/WIFI      | Fenvi T919 (BCM94360CD)                          |                                                |
-| PSU          | Antec EAG PRO 750W 80PLUS GOLD Modular           |                                                |
-| CPU Paste    | Thermalright TFX                                 |                                                |
-| CPU Cooler   | Thermalright Le GRAND MACHO RT                   |                                                |
-| MEM Cooler   | BRAVOTEC JONSBO NC-1 Black RGB                   |                                                |
-| Case         | 3RSYS L530                                       |                                                |
-| USB DAC      | Audinst HUD-DX1 Blue24                           |                                                |
-| USB MIC      | Blue Yeti X                                      |                                                |
+| CPU          | AMD Ryzen 5 5600X                                | PBO enabled                                    |
+| Mainboard    | Gigabyte X570s Aorus Elite AX                    | F5 BIOS                                        |
+| Memory       | Patriot Viper 4 Blackout DDR4 3600MHz 16GB       | With 18-22-22-42 timings                       |
+| Graphics     | AMD Radeon RX 580 4GB                            | Changed its thermal pad and thermal paste      |
+| M.2 NVMe     | KINGSTON SKC2500M8250G                           | macOS 14 installed                             |
+| M.2 SATA     | Kingston SHPM2280P2H/240G                        | Windows 11 installed                           |
+| PCI Ethernet | internal Realtek RTL8125                         | Ethernet device                                |
+| BT/WIFI      | internal AMD Wi-Fi 6E RZ608 (MT7921K) & BT 5.2   | not using it and no support in macOS at all    |
+
 
 ## EFI structure
 
@@ -35,7 +29,7 @@ This repository contains the EFI directory for Ryzen 3900X and Gigabyte X570 Aor
 
 - I recommend you use this as only a reference resource.
   - Obviously, this build may not be the best one.
-  - This EFI contains additional kexts in **config.plist** rather than only the essential things for X570 + Zen2 CPU. You should remove them before using this on your PC.
+  - This EFI contains additional kexts in **config.plist** rather than only the essential things for X570s + Zen3 CPU. You should remove them before using this on your PC.
 
 ### Check this before you use
 
@@ -50,23 +44,23 @@ So if you are going to use this, you have to make sure that the `EDIT_HERE` text
 
 #### Different options by CPU core counts
 
-From the recent AMD CPU patch, now we have to specify the CPU core counts to the `algrey - Force cpuid_cores_per_package` nodes. Currently, my EFI setup sets that for the **12-core** CPU model because I'm using Ryzen 3900X.
+From the recent AMD CPU patch, now we have to specify the CPU core counts to the `algrey - Force cpuid_cores_per_package` nodes. Currently, my EFI setup sets that for the **6-core** CPU model because I'm using Ryzen 5600X.
 
 - `algrey - Force cpuid_cores_per_package`
   - 10.13,10.14
-    - B8**0C**0000 0000
+    - B8**06**0000 0000
   - 10.15,11.0
-    - BA**0C**0000 0000
+    - BA**06**0000 0000
   - 12.0,13.0
-    - BA**0C**0000 0090
+    - BA**06**0000 0090
 
 Please refer to [the author's description](https://github.com/AMD-OSX/AMD_Vanilla#read-me-first) to get further information.
 
 #### About the Above 4G Decoding option in BIOS
 
-In my setup, I disabled **Above 4G Decoding** in my BIOS and added `npci=0x3000` to the boot args because it doesn't boot with that option enabled.
+In my setup, I ENABLED **Above 4G Decoding** in my BIOS and removed `npci=0x3000` from the boot args because it doesn't boot with that option disabled.
 
-If you want to use my EFI setup, you have to check whether this option enabled or not, if you want to enable **Above 4G Decoding** then you should remove that `npci=0x3000` arguments from the `boot-args`.
+If you want to use my EFI setup, you have to check whether this option enabled or not, if you want to disable **Above 4G Decoding** then you should add that `npci=0x3000` arguments from the `boot-args`.
 
 #### About fixing PAT methods
 
@@ -74,7 +68,7 @@ I choose Shaneee's one due to the better GPU performance. If you have trouble wi
 
 ### OpenCore
 
-- Version: 0.8.8
+- Version: 0.9.5
 
 ### ACPI
 
@@ -102,7 +96,6 @@ I choose Shaneee's one due to the better GPU performance. If you have trouble wi
 - NVMeFix.kext
 - RadeonSensor.kext
 - RestrictEvents.kext
-- SmallTreeIntel82576.kext
 - SMCAMDProcessor.kext
 - SMCRadeonSensor.kext
 - VirtualSMC.kext
@@ -123,7 +116,7 @@ I choose Shaneee's one due to the better GPU performance. If you have trouble wi
 - 3.5mm audio jacks
   - The speaker output on the front/back panel works.
   - The microphone input on the front/back panel doesn't work.
-  - Have not tested line in/out and digital out.
+  - Optical digital output works.
 - The common Ryzentosh issues. Please refer to the CPU support part of [Dortania's OpenCore Guide](https://dortania.github.io/OpenCore-Install-Guide/macos-limits.html#cpu-support)
   - Specific professional applications may need to be patched for AMD processors such as Adobe apps, Davinci Resolve, etc.
   - Virtualization (Apple Hypervisor and the apps using this like AVD on Android Studio, Parallels) is not working but VirtualBox works.
@@ -131,11 +124,6 @@ I choose Shaneee's one due to the better GPU performance. If you have trouble wi
 ### Doesn't work
 
 - Sidecar
-- Ethernet (Our NIC, Intel I211)
-  - After macOS 12 Monterey, the kext `SmallTreeIntel82576.kext` is not working anymore. It detects the NIC device but reports the cable is disconnected.
-    - <https://github.com/khronokernel/SmallTree-I211-AT-patch/issues/3>
-  - In some systems, AppleGB would work.
-    - <https://github.com/donatengit/AppleIGB>
 
 ## Main References
 
