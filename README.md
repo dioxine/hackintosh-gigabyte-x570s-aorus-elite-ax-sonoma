@@ -60,7 +60,7 @@ Please refer to [the author's description](https://github.com/AMD-OSX/AMD_Vanill
 
 In my setup, I ENABLED **Above 4G Decoding** in my BIOS and removed `npci=0x3000` from the boot args because it doesn't boot with that option disabled.
 
-If you want to use my EFI setup, you have to check whether this option enabled or not, if you want to disable **Above 4G Decoding** then you should add that `npci=0x3000` arguments from the `boot-args`.
+If you want to use my EFI setup, you have to check whether this option enabled or not, if you want to disable **Above 4G Decoding** then you should add that `npci=0x3000` arguments to the `boot-args`.
 
 #### About fixing PAT methods
 
