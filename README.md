@@ -125,6 +125,7 @@ I choose Shaneee's one due to the better GPU performance. If you have trouble wi
 ### Doesn't work
 
 - Sidecar
+- Internal AMD Wi-Fi 6E RZ608 (MT7921K) & BT 5.2
 
 ## Main References
 
