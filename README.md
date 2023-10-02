@@ -4,8 +4,8 @@
 
 ## What is this
 
-First of all, this is fork of [this wonderfull work for Ventura](https://github.com/awesometic/hackintosh-gigabyte-x570-aorus-elite/) but adаpted to nearly released **macOS Sonoma 14.0**
-I have a bit different hardware setup, so all parameteres are in table. All drivers updated to latest versions so as OpenCore to 0.9.5 version.
+First of all, this is fork of [this wonderfull work for Ventura](https://github.com/awesometic/hackintosh-gigabyte-x570-aorus-elite/) but adаpted to nearly released **macOS Sonoma 14.0** .
+I have a bit different hardware setup, so all parameteres are in table. All drivers were updated to latest versions so as OpenCore to 0.9.5 version.
 
 This repository contains the EFI directory for Ryzen 5600X and Gigabyte X570s Aorus Elite AX combo, with no additional components.
 
