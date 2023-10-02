@@ -109,7 +109,8 @@ I choose Shaneee's one due to the better GPU performance. If you have trouble wi
 
 ### Works
 
-- Almost everything including Apple continuity (Handoff, iMessage, Airdrop, Facetime, Universal Control, ...).
+- Almost everything including Apple continuity (Handoff, iMessage, Airdrop, Facetime, Universal Control, ...),
+  checked with external usb wifi-adapter.
 - Sleep and Wake work as expected. Wake on LAN works too.
 
 ### Partially works
